@@ -1,0 +1,15 @@
+/* *****************************************
+* Asteroids Game Side Project
+* Spring 2017
+*
+*
+* Date: ${date}
+* Time: ${time}
+*
+* Project: ${project.name}
+* Package: ${package}
+* File: ${name}
+* Description: Asteroids Game
+*
+* ****************************************
+*/
