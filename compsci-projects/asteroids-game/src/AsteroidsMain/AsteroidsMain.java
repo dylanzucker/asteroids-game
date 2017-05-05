@@ -9,6 +9,7 @@ package AsteroidsMain;
 
 
 import AsteroidsController.AsteroidsController;
+import AsteroidsView.AsteroidsView;
 import Models.GamePiece;
 import Models.Ship;
 import javafx.animation.AnimationTimer;
@@ -73,14 +74,13 @@ public class AsteroidsMain extends Application {
          Scene scene = new Scene(root);
          
          scene.setFill(Color.BLACK);
-         Pane box = new Pane();
+         AsteroidsView theView = new AsteroidsView();
          
-         box.setPrefSize(1000, 1000);
          //box.getChildren().add(iv1);
-         box.getChildren().add(ship.getView());
-         ctrl.setView(box);
-         ship.setPane(box);
-         root.getChildren().add(box);
+         theView.getPane().getChildren().add(ship.getView());
+         ctrl.setView(theView);
+         ship.setPane(theView.getPane());
+         root.getChildren().add(theView.getPane());
          
          stage.setTitle("ship_1.png");
          stage.setWidth(415);

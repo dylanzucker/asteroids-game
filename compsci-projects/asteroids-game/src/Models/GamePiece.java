@@ -28,7 +28,7 @@ import javafx.scene.layout.Pane;
 public class GamePiece {
     protected double width;
     protected double height;
-    protected Pane theView;
+    
     protected Pane thePane;
     /**
      * The x-coordinate of the GamePiece
