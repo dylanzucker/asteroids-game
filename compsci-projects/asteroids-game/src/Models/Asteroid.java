@@ -26,5 +26,5 @@ public class Asteroid extends GamePiece{
     public Asteroid(ImageView view) {
         super(view);
     }
-    
+
 }

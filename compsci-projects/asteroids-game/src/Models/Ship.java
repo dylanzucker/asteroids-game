@@ -3,6 +3,7 @@ package Models;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 
 /* *****************************************
 * Asteroids Game Side Project
@@ -26,6 +27,7 @@ import javafx.scene.image.ImageView;
 public class Ship extends GamePiece{
     
    private double acc = 1;
+   private Pane thePane;
     /**
      * How much of the super meter the ship has
      */
@@ -46,14 +48,14 @@ public class Ship extends GamePiece{
         //System.out.println(velocity.getX());
         this.xPos = xPos + acc * velocity.getX();
         this.yPos = yPos + acc * velocity.getY();
-//        if (xPos <= 0) {
-//            xPos = 1299;
-//        }
-//        if (yPos <= 0) {
-//            yPos = 799;
-//        }
-//        xPos %= 1300;
-//        yPos %= 800;
+     if (xPos <= 0) {
+            xPos = thePane.getWidth() - 1;
+        }
+        if (yPos <= 0) {
+            yPos = thePane.getHeight()- 1;
+        }
+        xPos %= (thePane.getWidth());
+        yPos %= (thePane.getHeight());
         if (acc <= 7) {
             acc += .17;
         }
@@ -68,13 +70,13 @@ public class Ship extends GamePiece{
         this.xPos = xPos + acc * velocity.getX();
         this.yPos = yPos + acc * velocity.getY();
         if (xPos <= 0) {
-            xPos = 1299;
+            xPos = thePane.getWidth() - 1;
         }
         if (yPos <= 0) {
-            yPos = 799;
+            yPos = thePane.getHeight()- 1;
         }
-        xPos %= 1300;
-        yPos %= 800;
+        xPos %= (thePane.getWidth());
+        yPos %= (thePane.getHeight());
         this.updateUI();
        imageView.setFocusTraversable(true);
     }
@@ -109,9 +111,11 @@ public class Ship extends GamePiece{
         Bullet bullet = new Bullet(imgv);
         bullet.setVelocity(new Point2D(x * 6, y * 6));
         bullet.setXPos(
-                this.getXPos());
+                xPos + this.imageView.getFitWidth()/2.1);
         bullet.setYPos(
                 this.getYPos());
+        bullet.getView().relocate(xPos, yPos);
+        bullet.setPane(thePane);
         return bullet;
     }
     public int getSuperMeter() {
@@ -139,6 +143,9 @@ public class Ship extends GamePiece{
     }
     public double getAcc() {
         return this.acc;
+    }
+    public void setPane(Pane pane) {
+        thePane = pane;
     }
 }
     

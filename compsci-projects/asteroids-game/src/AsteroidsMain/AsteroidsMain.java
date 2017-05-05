@@ -62,22 +62,24 @@ public class AsteroidsMain extends Application {
  
          Ship ship = new Ship(iv2);
          
+         
          ship.setXPos(200);
          ship.setYPos(200);
          
          ctrl.instatiateShip(ship);
          
-
+          
          Group root = new Group();
          Scene scene = new Scene(root);
          
          scene.setFill(Color.BLACK);
          Pane box = new Pane();
+         
          box.setPrefSize(1000, 1000);
          //box.getChildren().add(iv1);
          box.getChildren().add(ship.getView());
          ctrl.setView(box);
-        
+         ship.setPane(box);
          root.getChildren().add(box);
          
          stage.setTitle("ship_1.png");
@@ -91,6 +93,7 @@ public class AsteroidsMain extends Application {
                     
                         ctrl.onUpdate();
                         
+                        
                        
                         
                         
@@ -100,6 +103,7 @@ public class AsteroidsMain extends Application {
             scene.setOnKeyReleased(ctrl);
             stage.show();
             theTimer.start();
+            ctrl.generateAsteroids();
 
     }
 

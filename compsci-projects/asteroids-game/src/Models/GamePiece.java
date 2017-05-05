@@ -29,6 +29,7 @@ public class GamePiece {
     protected double width;
     protected double height;
     protected Pane theView;
+    protected Pane thePane;
     /**
      * The x-coordinate of the GamePiece
      */
@@ -81,7 +82,7 @@ public class GamePiece {
      * @return true if the two pieces are colliding
      */
     public boolean isColliding(GamePiece piece) {
-       return true;
+       return piece.getView().getBoundsInParent().intersects(this.getView().getBoundsInParent());
     }
     /**
      * Updates the x and y positions (xPos / yPos) of the GamePiece
@@ -89,14 +90,14 @@ public class GamePiece {
     public void update() {
         this.xPos = xPos + velocity.getX() * 1.2;
         this.yPos = yPos + velocity.getY() * 1.2;
-//        if (xPos <= 0) {
-//            xPos = 1299;
-//        }
-//        if (yPos <= 0) {
-//            yPos = 799;
-//        }
-//        xPos %= 1300;
-//        yPos %= 800;
+        if (xPos <= 0) {
+            xPos = thePane.getWidth() - 1;
+        }
+        if (yPos <= 0) {
+            yPos = thePane.getHeight()- 1;
+        }
+        xPos %= (thePane.getWidth());
+        yPos %= (thePane.getHeight());
         updateUI();
        imageView.setFocusTraversable(true);
         
@@ -213,6 +214,9 @@ public class GamePiece {
     }
     public String getImageFile() {
         return imageFile;
+    }
+    public void setPane(Pane pane) {
+        thePane = pane;
     }
 }
     
