@@ -15,7 +15,7 @@
  */
 package AsteroidsController;
 
-import AsteroidsView.AsteroidsView;
+import AsteroidsView.AsteroidsGameView;
 import Models.Asteroid;
 import Models.Bullet;
 import Models.GamePiece;
@@ -26,6 +26,7 @@ import java.util.Iterator;
 import java.util.Random;
 import javafx.concurrent.Task;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -46,7 +47,7 @@ public class AsteroidsController implements EventHandler<KeyEvent>{
     private boolean up;
     private boolean left;
     private Ship ship;
-    private AsteroidsView theView;
+    private AsteroidsGameView theView;
     private Thread th;
     private boolean gameOn = true;
     private int[] sizes = {40, 100, 130};
@@ -56,6 +57,19 @@ public class AsteroidsController implements EventHandler<KeyEvent>{
    
     
     public void onUpdate() {
+        if(gameOn == false) {
+            for(Asteroid a : asteroids) {
+                theView.getPane().getChildren().remove(a.getView());
+            }
+            for(Bullet b : bullets) {
+                theView.getPane().getChildren().remove(b.getView());
+            }
+            asteroids.clear();
+            bullets.clear();
+            
+            
+        }
+        else{
         for(Asteroid a: asteroids){
            
             if(!theView.getPane().getChildren().contains(a.getView())){
@@ -101,6 +115,7 @@ public class AsteroidsController implements EventHandler<KeyEvent>{
             ship.rotateLeft();
             
         }
+    }
     
     }
     
@@ -126,7 +141,7 @@ public class AsteroidsController implements EventHandler<KeyEvent>{
     @Override
     public void handle(KeyEvent event) { //add if collisionCheck fire button is pressed with another button
         if (event.getEventType() == KeyEvent.KEY_PRESSED) {
-            if (event.getCode() == KeyCode.W) {
+            if (event.getCode() == KeyCode.SPACE) {
                 if (!shoot) {
                     shoot = true;
                     addBullet(ship.shoot());
@@ -158,7 +173,7 @@ public class AsteroidsController implements EventHandler<KeyEvent>{
             if (event.getCode() == KeyCode.LEFT) {
                 left = false;
             }
-            if (event.getCode() == KeyCode.W) {
+            if (event.getCode() == KeyCode.SPACE) {
                 shoot = false;
             }
         }
@@ -184,7 +199,7 @@ public class AsteroidsController implements EventHandler<KeyEvent>{
         gameOn = false;
     }
     
-    public void setView(AsteroidsView view){
+    public void setView(AsteroidsGameView view){
         theView = view;
     }
     

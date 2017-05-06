@@ -24,14 +24,14 @@ import javafx.scene.paint.Paint;
  *
  * @author Dylan
  */
-public class AsteroidsView {
+public class AsteroidsGameView {
     
     private Pane thePane;
     private Label scoreLabel;
     private Button pauseButton;
     private Label superPowerLabel;
     
-    public AsteroidsView() {
+    public AsteroidsGameView() {
        
         thePane = new Pane();
         thePane.setPrefSize(1000, 1000);
