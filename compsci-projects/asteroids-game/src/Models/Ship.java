@@ -24,17 +24,19 @@ import javafx.scene.layout.Pane;
  *
  * @author Dylan
  */
-public class Ship extends GamePiece{
-    
-   private double acc = 1;
-   private Pane thePane;
+public class Ship extends GamePiece {
+
+    private double acc = 1;
+    private Pane thePane;
     /**
      * How much of the super meter the ship has
      */
     private int superMeter = 0;
+
     public Ship(ImageView image) {
         super(image);
     }
+
     /**
      * Moves the ship based on its current acceleration and rotation.
      *
@@ -48,20 +50,21 @@ public class Ship extends GamePiece{
         //System.out.println(velocity.getX());
         this.xPos = xPos + acc * velocity.getX();
         this.yPos = yPos + acc * velocity.getY();
-     if (xPos <= 0) {
+        if (xPos <= 0) {
             xPos = thePane.getWidth() - 1;
         }
         if (yPos <= 0) {
-            yPos = thePane.getHeight()- 1;
+            yPos = thePane.getHeight() - 1;
         }
         xPos %= (thePane.getWidth());
         yPos %= (thePane.getHeight());
         if (acc <= 7) {
             acc += .17;
         }
-       this.updateUI();
-       imageView.setFocusTraversable(true);
+        this.updateUI();
+        imageView.setFocusTraversable(true);
     }
+
     /**
      * Keeps the ship moving while decelerating to give frictionless feeling
      *
@@ -73,13 +76,14 @@ public class Ship extends GamePiece{
             xPos = thePane.getWidth() - 1;
         }
         if (yPos <= 0) {
-            yPos = thePane.getHeight()- 1;
+            yPos = thePane.getHeight() - 1;
         }
         xPos %= (thePane.getWidth());
         yPos %= (thePane.getHeight());
         this.updateUI();
-       imageView.setFocusTraversable(true);
+        imageView.setFocusTraversable(true);
     }
+
     /**
      * Decreases the acc of the ship
      */
@@ -88,14 +92,16 @@ public class Ship extends GamePiece{
             this.acc -= .06;
         }
         this.updateUI();
-       imageView.setFocusTraversable(true);
+        imageView.setFocusTraversable(true);
     }
+
     /**
      * Resets the acc back to 1
      */
     public void resetAcc() {
         this.acc = 1.0;
     }
+
     /**
      * Instantiates a new Bullet object and gives it the position of the ship
      *
@@ -106,21 +112,23 @@ public class Ship extends GamePiece{
         double y = this.getDirectionY();
         ImageView imgv = new ImageView();
         imgv.setImage(
-                new Image("newBullet.png", 10, 10, true, true));
+                new Image("newBullet.png", 20, 20, true, true));
         //imgv.setRotate(ship.getRotate());
         Bullet bullet = new Bullet(imgv);
-        bullet.setVelocity(new Point2D(x * 6, y * 6));
+        bullet.setVelocity(new Point2D(x * 3, y * 3));
         bullet.setXPos(
-                xPos + this.imageView.getFitWidth()/2.1);
+                xPos + this.imageView.getFitWidth() / 2.1);
         bullet.setYPos(
                 this.getYPos());
         bullet.getView().relocate(xPos, yPos);
         bullet.setPane(thePane);
         return bullet;
     }
+
     public int getSuperMeter() {
         return superMeter;
     }
+
     /**
      * Adds superNum to superMeter. If superMeter is greater than 100, resets it
      * back to 100
@@ -135,18 +143,19 @@ public class Ship extends GamePiece{
             superMeter = 100;
         }
     }
+
     /**
      * Resets the superMeter back to 0
      */
     public void useSuper() {
         superMeter = 0;
     }
+
     public double getAcc() {
         return this.acc;
     }
+
     public void setPane(Pane pane) {
         thePane = pane;
     }
 }
-    
-    

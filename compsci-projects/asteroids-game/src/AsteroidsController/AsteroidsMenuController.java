@@ -65,6 +65,7 @@ public class AsteroidsMenuController implements EventHandler<ActionEvent> {
 
             AsteroidsGameView gameView = new AsteroidsGameView();
             AsteroidsController ctrl = new AsteroidsController();
+            ctrl.setStage(theStage);
             // load the image
             Image image = new Image("ship.png");
 
@@ -86,8 +87,8 @@ public class AsteroidsMenuController implements EventHandler<ActionEvent> {
             // displays it rotated
             Ship ship = new Ship(iv2);
 
-            ship.setXPos(200);
-            ship.setYPos(200);
+            ship.setXPos(450);
+            ship.setYPos(350);
 
             ctrl.instatiateShip(ship);
             AsteroidsGameView view = new AsteroidsGameView();
