@@ -15,6 +15,7 @@
  */
 package AsteroidsController;
 
+import AsteroidsView.AsteroidsControlsView;
 import AsteroidsView.AsteroidsGameView;
 import AsteroidsView.AsteroidsMainMenu;
 import Models.Ship;
@@ -63,7 +64,7 @@ public class AsteroidsMenuController implements EventHandler<ActionEvent> {
             Group root = new Group();
             Scene scene = new Scene(root);
 
-            AsteroidsGameView gameView = new AsteroidsGameView();
+            AsteroidsGameView view = new AsteroidsGameView();
             AsteroidsController ctrl = new AsteroidsController();
             ctrl.setStage(theStage);
             // load the image
@@ -91,7 +92,6 @@ public class AsteroidsMenuController implements EventHandler<ActionEvent> {
             ship.setYPos(350);
 
             ctrl.instatiateShip(ship);
-            AsteroidsGameView view = new AsteroidsGameView();
 
             view.getPane().getChildren().add(ship.getView());
             view.getPane().setBackground(new Background(new BackgroundImage(
@@ -119,6 +119,24 @@ public class AsteroidsMenuController implements EventHandler<ActionEvent> {
             theStage.show();
             theTimer.start();
             ctrl.generateAsteroids();
+        }
+
+        else if (source.getText().equalsIgnoreCase("controls")) {
+            Group root = new Group();
+            Scene scene = new Scene(root);
+
+            AsteroidsControlsView view = new AsteroidsControlsView();
+            AsteroidsControlsController ctrl = new AsteroidsControlsController();
+            ctrl.setStage(theStage);
+            ctrl.setView(view);
+            scene.setOnKeyPressed(ctrl);
+            scene.setOnKeyReleased(ctrl);
+
+            theStage.setWidth(415);
+            theStage.setHeight(200);
+            theStage.setScene(scene);
+            theStage.sizeToScene();
+            theStage.show();
         }
     }
 }
