@@ -35,12 +35,18 @@ public class AsteroidsControlsView {
 
         thePane = new Pane();
         thePane.setPrefSize(1000, 1000);
+
         controlsLabel = new Label("CONTROLS");
         controlsLabel.setTextFill(Paint.valueOf("WHITE"));
         controlsLabel.setMinSize(40, 40);
         controlsLabel.setLayoutX(thePane.getWidth() + 50);
         controlsLabel.setLayoutY(thePane.getHeight() + 10);
         thePane.getChildren().add(controlsLabel);
+
+        backButton = new Button("Back");
+        backButton.setTranslateX(250);
+        backButton.setTranslateY(250);
+        thePane.getChildren().add(backButton);
 
     }
 

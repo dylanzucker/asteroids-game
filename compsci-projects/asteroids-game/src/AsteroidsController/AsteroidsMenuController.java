@@ -29,6 +29,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -129,11 +130,14 @@ public class AsteroidsMenuController implements EventHandler<ActionEvent> {
             AsteroidsControlsController ctrl = new AsteroidsControlsController();
             ctrl.setStage(theStage);
             ctrl.setView(view);
-            scene.setOnKeyPressed(ctrl);
-            scene.setOnKeyReleased(ctrl);
+            view.getBackButton().setOnAction(ctrl);
 
-            theStage.setWidth(415);
-            theStage.setHeight(200);
+            scene.setFill(Color.BLACK);
+
+            root.getChildren().add(view.getPane());
+
+            theStage.setWidth(1000);
+            theStage.setHeight(1000);
             theStage.setScene(scene);
             theStage.sizeToScene();
             theStage.show();
