@@ -21,6 +21,7 @@ import Models.Asteroid;
 import Models.Bullet;
 import Models.GamePiece;
 import Models.Ship;
+import com.sun.corba.se.impl.orbutil.concurrent.Mutex;
 import java.util.ArrayList;
 import java.util.Random;
 import javafx.concurrent.Task;
@@ -56,8 +57,10 @@ public class AsteroidsController implements EventHandler<KeyEvent> {
     private int score = 0;
     private AsteroidsController ctrl = this;
     private Stage thisStage;
+    private Mutex mutex = new Mutex();
 
-    public void onUpdate() {
+    public void onUpdate() throws InterruptedException {
+        mutex.acquire();
         if (!gameOn) {
             for (Asteroid a : asteroids) {
                 theView.getPane().getChildren().remove(a.getView());
@@ -115,6 +118,7 @@ public class AsteroidsController implements EventHandler<KeyEvent> {
 
             }
         }
+        mutex.release();
 
     }
 
@@ -235,6 +239,7 @@ public class AsteroidsController implements EventHandler<KeyEvent> {
         protected Void call() throws Exception {
 
             while (gameOn) {
+                mutex.acquire();
                 ArrayList<Asteroid> newList = new ArrayList<>();
                 newList = asteroids;
 //                if (asteroids.size() > 70) { //Make it a max asteroids that collisionCheck number goes up as you play longer
@@ -321,6 +326,7 @@ public class AsteroidsController implements EventHandler<KeyEvent> {
                     addAsteroid(a);
 
                 }
+                mutex.release();
             }
 
             return null;
