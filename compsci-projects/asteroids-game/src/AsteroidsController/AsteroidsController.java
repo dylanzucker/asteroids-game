@@ -93,8 +93,44 @@ public class AsteroidsController implements EventHandler<KeyEvent> {
                         b.setAlive(false);
                         a.setAlive(false);
                         theView.getPane().getChildren().remove(b.getView());
+                        //                      if (a.getPieceWidth() == sizes[0]) {
                         theView.getPane().getChildren().remove(a.getView());
+//                        }
+//                        else {
+//                            int childSize;
+//                            if (a.getPieceWidth() == sizes[1]) {
+//                                childSize = sizes[0];
+//                            }
+//                            else {
+//                                childSize = sizes[1];
+//                            }
+//                            ImageView imgv = new ImageView();
+//                            imgv.setImage(
+//                                    new Image("newAsteroid.png", childSize,
+//                                              childSize, true, true));
+//
+//                            Asteroid child1 = new Asteroid(imgv);
+//                            Asteroid child2 = new Asteroid(imgv);
+//                            child1.setPieceWidth(childSize);
+//                            child1.setPieceHeight(childSize);
+//                            child2.setPieceWidth(childSize);
+//                            child2.setPieceHeight(childSize);
+//                            child1.setXPos(a.getXPos());
+//                            child1.setYPos(a.getYPos());
+//                            child1.setVelocity(a.getVelocity());
+//                            child2.setXPos(a.getXPos());
+//                            child2.setYPos(a.getYPos());
+//                            child2.setPieceWidth(childSize);
+//                            child2.setPieceHeight(childSize);
+//                            child1.setImageFile(a.getImageFile());
+//                            child2.setImageFile(a.getImageFile());
+//                            child2.setVelocity(new Point2D(0.5, 0.5));
+//                            child1.setPane(theView.getPane());
+//                            child2.setPane(theView.getPane());
+//                            addAsteroid(child1);
+//                            addAsteroid(child2);
 
+                        // }
                     }
                 }
             }
@@ -323,6 +359,9 @@ public class AsteroidsController implements EventHandler<KeyEvent> {
                     }
 
                     a.setImageFile("newAsteroid.png");
+                    a.setPieceWidth(sizes[2]);
+                    a.setPieceHeight(sizes[2]);
+
                     addAsteroid(a);
 
                 }

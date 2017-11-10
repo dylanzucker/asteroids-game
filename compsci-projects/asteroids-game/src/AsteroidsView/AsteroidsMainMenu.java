@@ -17,6 +17,12 @@ package AsteroidsView;
 
 import AsteroidsController.AsteroidsMenuController;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -39,6 +45,18 @@ public class AsteroidsMainMenu {
         thePane = new Pane();
         thePane.setPrefSize(1000, 1000);
 
+        //Set the Background Image
+        Image image = new Image("Home.jpg");
+        BackgroundSize backgroundSize = new BackgroundSize(1000, 1000, true,
+                                                           true, true, false);
+        BackgroundImage backgroundImage = new BackgroundImage(image,
+                                                              BackgroundRepeat.REPEAT,
+                                                              BackgroundRepeat.NO_REPEAT,
+                                                              BackgroundPosition.CENTER,
+                                                              backgroundSize);
+        thePane.setBackground(new Background(backgroundImage));
+
+        // Take care of the Buttons
         controlsButton = new Button("Controls");
         controlsButton.setLayoutX(500);
         controlsButton.setLayoutY(500);
@@ -53,9 +71,17 @@ public class AsteroidsMainMenu {
 
         ctrl = new AsteroidsMenuController(this);
 
+        ctrl.setStage(theStage);
+
+        ctrl.setView(this);
+        controlsButton.setOnAction(ctrl);
+        viewHighScoresButton.setOnAction(ctrl);
+        startButton.setOnAction(ctrl);
+
         thePane.getChildren().add(controlsButton);
         thePane.getChildren().add(startButton);
         thePane.getChildren().add(viewHighScoresButton);
+
     }
 
     public Pane getPane() {

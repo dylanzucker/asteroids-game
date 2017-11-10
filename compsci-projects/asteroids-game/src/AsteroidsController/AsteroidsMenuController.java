@@ -19,6 +19,8 @@ import AsteroidsView.AsteroidsControlsView;
 import AsteroidsView.AsteroidsGameView;
 import AsteroidsView.AsteroidsMainMenu;
 import Models.Ship;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -105,7 +107,14 @@ public class AsteroidsMenuController implements EventHandler<ActionEvent> {
                 @Override
                 public void handle(long now) {
 
-                    ctrl.onUpdate();
+                    try {
+                        ctrl.onUpdate();
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(AsteroidsMenuController.class.getName()).log(
+                                Level.SEVERE,
+                                null,
+                                ex);
+                    }
 
                 }
             };

@@ -30,7 +30,7 @@ public class AsteroidsMain extends Application {
 
         root.getChildren().add(menuView.getPane());
 
-        stage.setTitle("ship_1.png");
+        stage.setTitle("Asteroids Game!!!");
         stage.setWidth(415);
         stage.setHeight(200);
         stage.setScene(scene);

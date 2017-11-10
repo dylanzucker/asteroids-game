@@ -16,8 +16,12 @@
 package AsteroidsController;
 
 import AsteroidsView.AsteroidsControlsView;
+import AsteroidsView.AsteroidsMainMenu;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -27,7 +31,7 @@ import javafx.stage.Stage;
 class AsteroidsControlsController implements EventHandler<ActionEvent> {
 
     private AsteroidsControlsView theView;
-    private Stage thisStage;
+    private Stage theStage;
     private AsteroidsControlsController ctrl = this;
 
     public void setView(AsteroidsControlsView view) {
@@ -35,13 +39,31 @@ class AsteroidsControlsController implements EventHandler<ActionEvent> {
     }
 
     public void setStage(Stage stage) {
-        thisStage = stage;
+        theStage = stage;
     }
 
     @Override
     public void handle(ActionEvent event) {
         if (event.getSource().equals(theView.getBackButton())) {
             //set up the main menu maybe make that a method.
+            Group root = new Group();
+            Scene scene = new Scene(root);
+
+            AsteroidsMainMenu view = new AsteroidsMainMenu();
+            //AsteroidsMenuController ctrl = new AsteroidsMenuController(view);
+//            ctrl.setStage(theStage);
+//            ctrl.setView(view);
+
+            view.setStage(theStage);
+            scene.setFill(Color.BLACK);
+
+            root.getChildren().add(view.getPane());
+
+            theStage.setWidth(1000);
+            theStage.setHeight(1000);
+            theStage.setScene(scene);
+            theStage.sizeToScene();
+            theStage.show();
         }
     }
 
